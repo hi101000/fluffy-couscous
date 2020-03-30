@@ -1,0 +1,32 @@
+import smtplib
+import time
+
+sender='sender'
+recievers=['recipient1', 'recipient2']
+message='''From: sender<sender's email>
+To: recipient<recipient's email>
+*message*
+'''
+
+def send():
+    try:
+        smtpObj=smtplib.SMTP('localhost')
+        smtpObj.sendmail(sender, recievers, message)
+        print('email succesfully sent!')
+    except SMTPException:
+        print('error, unable to send email.')
+
+password1='*password*'
+password2=input('enter password')
+seconds=input('enter number of seconds as integer')
+def countdown(n, password):
+    while n>0:
+        print(n)
+        n-=1
+        time.sleep(1)
+    if n==0&password!=password1:
+        send()
+    else:
+        countdown(int(seconds), password2)
+
+countdown(int(seconds), password2)
